@@ -67,6 +67,14 @@
     
 
     <div class="article-content">
+      ---
+date: 2017-01-19T11:08:14-08:00
+title: "Principal Component Analysis"
+author: Janesh Devkota
+tags: principal component
+---
+
+
 
 
 <p>A very nice tutorial on principal component analysis can be found on <a href="https://www.youtube.com/watch?v=_UVHneBUBW0&amp;t=1s&amp;ab_channel=JoshuaStarmer">youtube.</a></p>
@@ -74,22 +82,101 @@
 <pre class="r"><code>#install.packages(&quot;HSAUR&quot;)
 library(HSAUR)</code></pre>
 <pre><code>## Loading required package: tools</code></pre>
-<pre class="r"><code>data(&quot;heptathlon&quot;, package = &quot;HSAUR&quot;)
-head(heptathlon)</code></pre>
-<pre><code>##                     hurdles highjump  shot run200m longjump javelin
-## Joyner-Kersee (USA)   12.69     1.86 15.80   22.56     7.27   45.66
-## John (GDR)            12.85     1.80 16.23   23.65     6.71   42.56
-## Behmer (GDR)          13.20     1.83 14.20   23.10     6.68   44.54
-## Sablovskaite (URS)    13.61     1.80 15.23   23.92     6.25   42.78
-## Choubenkova (URS)     13.51     1.74 14.76   23.93     6.32   47.46
-## Schulz (GDR)          13.75     1.83 13.50   24.65     6.33   42.82
-##                     run800m score
-## Joyner-Kersee (USA)  128.51  7291
-## John (GDR)           126.12  6897
-## Behmer (GDR)         124.20  6858
-## Sablovskaite (URS)   132.24  6540
-## Choubenkova (URS)    127.90  6540
-## Schulz (GDR)         125.79  6411</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(knitr)
+data(&quot;heptathlon&quot;, package = &quot;HSAUR&quot;)
+head(heptathlon) %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">hurdles</th>
+<th align="right">highjump</th>
+<th align="right">shot</th>
+<th align="right">run200m</th>
+<th align="right">longjump</th>
+<th align="right">javelin</th>
+<th align="right">run800m</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Joyner-Kersee (USA)</td>
+<td align="right">12.69</td>
+<td align="right">1.86</td>
+<td align="right">15.80</td>
+<td align="right">22.56</td>
+<td align="right">7.27</td>
+<td align="right">45.66</td>
+<td align="right">128.51</td>
+<td align="right">7291</td>
+</tr>
+<tr class="even">
+<td>John (GDR)</td>
+<td align="right">12.85</td>
+<td align="right">1.80</td>
+<td align="right">16.23</td>
+<td align="right">23.65</td>
+<td align="right">6.71</td>
+<td align="right">42.56</td>
+<td align="right">126.12</td>
+<td align="right">6897</td>
+</tr>
+<tr class="odd">
+<td>Behmer (GDR)</td>
+<td align="right">13.20</td>
+<td align="right">1.83</td>
+<td align="right">14.20</td>
+<td align="right">23.10</td>
+<td align="right">6.68</td>
+<td align="right">44.54</td>
+<td align="right">124.20</td>
+<td align="right">6858</td>
+</tr>
+<tr class="even">
+<td>Sablovskaite (URS)</td>
+<td align="right">13.61</td>
+<td align="right">1.80</td>
+<td align="right">15.23</td>
+<td align="right">23.92</td>
+<td align="right">6.25</td>
+<td align="right">42.78</td>
+<td align="right">132.24</td>
+<td align="right">6540</td>
+</tr>
+<tr class="odd">
+<td>Choubenkova (URS)</td>
+<td align="right">13.51</td>
+<td align="right">1.74</td>
+<td align="right">14.76</td>
+<td align="right">23.93</td>
+<td align="right">6.32</td>
+<td align="right">47.46</td>
+<td align="right">127.90</td>
+<td align="right">6540</td>
+</tr>
+<tr class="even">
+<td>Schulz (GDR)</td>
+<td align="right">13.75</td>
+<td align="right">1.83</td>
+<td align="right">13.50</td>
+<td align="right">24.65</td>
+<td align="right">6.33</td>
+<td align="right">42.82</td>
+<td align="right">125.79</td>
+<td align="right">6411</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>heptathlon$hurdles &lt;- max(heptathlon$hurdles) - heptathlon$hurdles
 heptathlon$run200m &lt;- max(heptathlon$run200m) - heptathlon$run200m
 heptathlon$run800m &lt;- max(heptathlon$run800m) - heptathlon$run800m

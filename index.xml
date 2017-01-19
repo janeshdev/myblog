@@ -15,7 +15,15 @@
       <pubDate>Thu, 19 Jan 2017 11:08:14 -0800</pubDate>
       
       <guid>/2017/01/19/principal-component-analysis/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+      <description>---
+date: 2017-01-19T11:08:14-08:00
+title: &#34;Principal Component Analysis&#34;
+author: Janesh Devkota
+tags: principal component
+---
+
+
+&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
 
@@ -24,22 +32,101 @@
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;quot;HSAUR&amp;quot;)
 library(HSAUR)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: tools&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(&amp;quot;heptathlon&amp;quot;, package = &amp;quot;HSAUR&amp;quot;)
-head(heptathlon)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                     hurdles highjump  shot run200m longjump javelin
-## Joyner-Kersee (USA)   12.69     1.86 15.80   22.56     7.27   45.66
-## John (GDR)            12.85     1.80 16.23   23.65     6.71   42.56
-## Behmer (GDR)          13.20     1.83 14.20   23.10     6.68   44.54
-## Sablovskaite (URS)    13.61     1.80 15.23   23.92     6.25   42.78
-## Choubenkova (URS)     13.51     1.74 14.76   23.93     6.32   47.46
-## Schulz (GDR)          13.75     1.83 13.50   24.65     6.33   42.82
-##                     run800m score
-## Joyner-Kersee (USA)  128.51  7291
-## John (GDR)           126.12  6897
-## Behmer (GDR)         124.20  6858
-## Sablovskaite (URS)   132.24  6540
-## Choubenkova (URS)    127.90  6540
-## Schulz (GDR)         125.79  6411&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(knitr)
+data(&amp;quot;heptathlon&amp;quot;, package = &amp;quot;HSAUR&amp;quot;)
+head(heptathlon) %&amp;gt;% kable()&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;hurdles&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;highjump&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;shot&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;run200m&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;longjump&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;javelin&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;run800m&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;score&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Joyner-Kersee (USA)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.69&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.86&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.80&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;22.56&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;128.51&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7291&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;John (GDR)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.85&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.80&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23.65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.71&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;42.56&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;126.12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Behmer (GDR)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.83&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23.10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.68&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44.54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;124.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6858&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Sablovskaite (URS)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.61&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.80&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23.92&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.25&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;42.78&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;132.24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6540&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Choubenkova (URS)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.51&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.74&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.76&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23.93&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;47.46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;127.90&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6540&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Schulz (GDR)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.75&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.83&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;24.65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;42.82&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;125.79&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6411&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;heptathlon$hurdles &amp;lt;- max(heptathlon$hurdles) - heptathlon$hurdles
 heptathlon$run200m &amp;lt;- max(heptathlon$run200m) - heptathlon$run200m
 heptathlon$run800m &amp;lt;- max(heptathlon$run800m) - heptathlon$run800m
