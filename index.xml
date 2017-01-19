@@ -15,15 +15,7 @@
       <pubDate>Thu, 19 Jan 2017 11:08:14 -0800</pubDate>
       
       <guid>/2017/01/19/principal-component-analysis/</guid>
-      <description>---
-date: 2017-01-19T11:08:14-08:00
-title: &#34;Principal Component Analysis&#34;
-author: Janesh Devkota
-tags: principal component
----
-
-
-&lt;!-- BLOGDOWN-BODY-BEFORE
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
 
@@ -176,7 +168,7 @@ score&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;view-summary&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;View summary&lt;/h1&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(heptathlon_pca)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(heptathlon_pca) &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Importance of components:
 ##                           PC1    PC2     PC3     PC4     PC5     PC6
 ## Standard deviation     2.1119 1.0928 0.72181 0.67614 0.49524 0.27010
