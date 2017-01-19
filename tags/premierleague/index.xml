@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Premierleague on Lithium Theme</title>
+    <link>/tags/premierleague/index.xml</link>
+    <description>Recent content in Premierleague on Lithium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/premierleague/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Analyzing fantasy premier league</title>
+      <link>/2017/01/19/analyzing-fantasy-premier-league/</link>
+      <pubDate>Thu, 19 Jan 2017 10:13:31 -0800</pubDate>
+      
+      <guid>/2017/01/19/analyzing-fantasy-premier-league/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;div id=&#34;analyzing-premier-league&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Analyzing premier league&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: xml2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: methods&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;XML&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:rvest&amp;#39;:
+## 
+##     xml&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First table&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;prem_table[[1]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                                           Pos           Club Pl  GD Pts
+## 1    1\r\n                Previous Position 1        Chelsea 21  30  52
+## 2    2\r\n                Previous Position 3          Spurs 21  29  45
+## 3    3\r\n                Previous Position 2      Liverpool 21  25  45
+## 4    4\r\n                Previous Position 5        Arsenal 21  26  44
+## 5    5\r\n                Previous Position 4       Man City 21  15  42
+## 6    6\r\n                Previous Position 6        Man Utd 21  12  40
+## 7    7\r\n                Previous Position 7        Everton 21   9  33
+## 8    8\r\n                Previous Position 8      West Brom 21   0  29
+## 9   9\r\n                Previous Position 11          Stoke 21  -6  27
+## 10 10\r\n                Previous Position 12        Burnley 21  -8  26
+## 11  11\r\n                Previous Position 9    Bournemouth 21  -7  25
+## 12 12\r\n                Previous Position 13       West Ham 21  -9  25
+## 13 13\r\n                Previous Position 10    Southampton 21  -7  24
+## 14 14\r\n                Previous Position 14        Watford 21 -13  23
+## 15 15\r\n                Previous Position 15      Leicester 21 -10  21
+## 16 16\r\n                Previous Position 16  Middlesbrough 21  -5  20
+## 17 17\r\n                Previous Position 17 Crystal Palace 21 -10  16
+## 18 18\r\n                Previous Position 20           Hull 21 -25  16
+## 19 19\r\n                Previous Position 18     Sunderland 21 -20  15
+## 20 20\r\n                Previous Position 19        Swansea 21 -26  15&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Second table&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;prem_table[[2]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                                           Pos        Club Pl  GD Pts
+## 1    1\r\n                Previous Position 1     Everton 14  22  32
+## 2    2\r\n                Previous Position 2    Man City 14  10  28
+## 3    3\r\n                Previous Position 3   Liverpool 13  10  23
+## 4    4\r\n                Previous Position 4     Chelsea 14  10  22
+## 5    5\r\n                Previous Position 5     Arsenal 14   3  22
+## 6    6\r\n                Previous Position 6  Sunderland 14  -1  20
+## 7    7\r\n                Previous Position 9     Man Utd 14  -6  17
+## 8    8\r\n                Previous Position 7 Southampton 14  -7  15
+## 9    9\r\n                Previous Position 8     Reading 14 -10  14
+## 10 10\r\n                Previous Position 10       Spurs 14  -8  13
+## 11 11\r\n                Previous Position 11   Leicester 13 -11  12
+## 12 12\r\n                Previous Position 12       Derby 14 -12  10&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.18.1" />
+
+
+<title>Analyzing fantasy premier league - Lithium Theme</title>
+<meta property="og:title" content="Analyzing fantasy premier league - Lithium Theme">
+
+
+
+  
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png" 
+         width="50" 
+         height="50" 
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Analyzing fantasy premier league</h1>
+
+    
+    <span class="article-date">January 19, 2017</span>
+    
+
+    <div class="article-content">
+
+
+<div id="analyzing-premier-league" class="section level2">
+<h2>Analyzing premier league</h2>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre><code>## Loading required package: methods</code></pre>
+<pre><code>## 
+## Attaching package: &#39;XML&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:rvest&#39;:
+## 
+##     xml</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>First table</p>
+<pre class="r"><code>prem_table[[1]]</code></pre>
+<pre><code>##                                           Pos           Club Pl  GD Pts
+## 1    1\r\n                Previous Position 1        Chelsea 21  30  52
+## 2    2\r\n                Previous Position 3          Spurs 21  29  45
+## 3    3\r\n                Previous Position 2      Liverpool 21  25  45
+## 4    4\r\n                Previous Position 5        Arsenal 21  26  44
+## 5    5\r\n                Previous Position 4       Man City 21  15  42
+## 6    6\r\n                Previous Position 6        Man Utd 21  12  40
+## 7    7\r\n                Previous Position 7        Everton 21   9  33
+## 8    8\r\n                Previous Position 8      West Brom 21   0  29
+## 9   9\r\n                Previous Position 11          Stoke 21  -6  27
+## 10 10\r\n                Previous Position 12        Burnley 21  -8  26
+## 11  11\r\n                Previous Position 9    Bournemouth 21  -7  25
+## 12 12\r\n                Previous Position 13       West Ham 21  -9  25
+## 13 13\r\n                Previous Position 10    Southampton 21  -7  24
+## 14 14\r\n                Previous Position 14        Watford 21 -13  23
+## 15 15\r\n                Previous Position 15      Leicester 21 -10  21
+## 16 16\r\n                Previous Position 16  Middlesbrough 21  -5  20
+## 17 17\r\n                Previous Position 17 Crystal Palace 21 -10  16
+## 18 18\r\n                Previous Position 20           Hull 21 -25  16
+## 19 19\r\n                Previous Position 18     Sunderland 21 -20  15
+## 20 20\r\n                Previous Position 19        Swansea 21 -26  15</code></pre>
+<p>Second table</p>
+<pre class="r"><code>prem_table[[2]]</code></pre>
+<pre><code>##                                           Pos        Club Pl  GD Pts
+## 1    1\r\n                Previous Position 1     Everton 14  22  32
+## 2    2\r\n                Previous Position 2    Man City 14  10  28
+## 3    3\r\n                Previous Position 3   Liverpool 13  10  23
+## 4    4\r\n                Previous Position 4     Chelsea 14  10  22
+## 5    5\r\n                Previous Position 5     Arsenal 14   3  22
+## 6    6\r\n                Previous Position 6  Sunderland 14  -1  20
+## 7    7\r\n                Previous Position 9     Man Utd 14  -6  17
+## 8    8\r\n                Previous Position 7 Southampton 14  -7  15
+## 9    9\r\n                Previous Position 8     Reading 14 -10  14
+## 10 10\r\n                Previous Position 10       Spurs 14  -8  13
+## 11 11\r\n                Previous Position 11   Leicester 13 -11  12
+## 12 12\r\n                Previous Position 12       Derby 14 -12  10</code></pre>
+</div>
+
+
+
+    </div>
+  </article>
+
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/r.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/yaml.min.js"></script>
+    
+    <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+  </body>
+</html>
+
