@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.18.1" />
+
+
+<title>Principal Component Analysis - Lithium Theme</title>
+<meta property="og:title" content="Principal Component Analysis - Lithium Theme">
+
+
+
+  
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png" 
+         width="50" 
+         height="50" 
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">Principal Component Analysis</h1>
+
+    
+    <span class="article-date">January 19, 2017</span>
+    
+
+    <div class="article-content">
+
+
+<div id="the-following-code-is-based-on-the-paper" class="section level1">
+<h1>The following code is based on the paper</h1>
+</div>
+<div id="ftpcran.r-project.orgpubrwebpackageshsaurvignettesch_principal_components_analysis.pdf" class="section level1">
+<h1><a href="ftp://cran.r-project.org/pub/R/web/packages/HSAUR/vignettes/Ch_principal_components_analysis.pdf" class="uri">ftp://cran.r-project.org/pub/R/web/packages/HSAUR/vignettes/Ch_principal_components_analysis.pdf</a></h1>
+<pre class="r"><code>#install.packages(&quot;HSAUR&quot;)
+library(HSAUR)</code></pre>
+<pre><code>## Loading required package: tools</code></pre>
+<pre class="r"><code>data(&quot;heptathlon&quot;, package = &quot;HSAUR&quot;)
+head(heptathlon)</code></pre>
+<pre><code>##                     hurdles highjump  shot run200m longjump javelin
+## Joyner-Kersee (USA)   12.69     1.86 15.80   22.56     7.27   45.66
+## John (GDR)            12.85     1.80 16.23   23.65     6.71   42.56
+## Behmer (GDR)          13.20     1.83 14.20   23.10     6.68   44.54
+## Sablovskaite (URS)    13.61     1.80 15.23   23.92     6.25   42.78
+## Choubenkova (URS)     13.51     1.74 14.76   23.93     6.32   47.46
+## Schulz (GDR)          13.75     1.83 13.50   24.65     6.33   42.82
+##                     run800m score
+## Joyner-Kersee (USA)  128.51  7291
+## John (GDR)           126.12  6897
+## Behmer (GDR)         124.20  6858
+## Sablovskaite (URS)   132.24  6540
+## Choubenkova (URS)    127.90  6540
+## Schulz (GDR)         125.79  6411</code></pre>
+<pre class="r"><code>heptathlon$hurdles &lt;- max(heptathlon$hurdles) - heptathlon$hurdles
+heptathlon$run200m &lt;- max(heptathlon$run200m) - heptathlon$run200m
+heptathlon$run800m &lt;- max(heptathlon$run800m) - heptathlon$run800m
+
+plot(heptathlon)</code></pre>
+<p><img src="figures/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="now-look-at-correlations" class="section level1">
+<h1>Now look at correlations</h1>
+<pre class="r"><code>round(cor(heptathlon), 2)</code></pre>
+<pre><code>##          hurdles highjump shot run200m longjump javelin run800m score
+## hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78  0.92
+## highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59  0.77
+## shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42  0.80
+## run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62  0.86
+## longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70  0.95
+## javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02  0.25
+## run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00  0.77
+## score       0.92     0.77 0.80    0.86     0.95    0.25    0.77  1.00</code></pre>
+<pre class="r"><code>heptathlon_pca &lt;- prcomp(subset(heptathlon, select = -c(score)), scale = TRUE)
+heptathlon_pca</code></pre>
+<pre><code>## Standard deviations:
+## [1] 2.1119364 1.0928497 0.7218131 0.6761411 0.4952441 0.2701029 0.2213617
+## 
+## Rotation:
+##                 PC1         PC2         PC3         PC4         PC5
+## hurdles  -0.4528710  0.15792058 -0.04514996  0.02653873 -0.09494792
+## highjump -0.3771992  0.24807386 -0.36777902  0.67999172  0.01879888
+## shot     -0.3630725 -0.28940743  0.67618919  0.12431725  0.51165201
+## run200m  -0.4078950 -0.26038545  0.08359211 -0.36106580 -0.64983404
+## longjump -0.4562318  0.05587394  0.13931653  0.11129249 -0.18429810
+## javelin  -0.0754090 -0.84169212 -0.47156016  0.12079924  0.13510669
+## run800m  -0.3749594  0.22448984 -0.39585671 -0.60341130  0.50432116
+##                  PC6         PC7
+## hurdles  -0.78334101  0.38024707
+## highjump  0.09939981 -0.43393114
+## shot     -0.05085983 -0.21762491
+## run200m   0.02495639 -0.45338483
+## longjump  0.59020972  0.61206388
+## javelin  -0.02724076  0.17294667
+## run800m   0.15555520 -0.09830963</code></pre>
+</div>
+<div id="look-at-score" class="section level1">
+<h1>look at score</h1>
+<pre class="r"><code>score &lt;- which(colnames(heptathlon) == &quot;score&quot;)
+score</code></pre>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="view-summary" class="section level1">
+<h1>View summary</h1>
+<pre class="r"><code>summary(heptathlon_pca)</code></pre>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4     PC5     PC6
+## Standard deviation     2.1119 1.0928 0.72181 0.67614 0.49524 0.27010
+## Proportion of Variance 0.6372 0.1706 0.07443 0.06531 0.03504 0.01042
+## Cumulative Proportion  0.6372 0.8078 0.88223 0.94754 0.98258 0.99300
+##                           PC7
+## Standard deviation     0.2214
+## Proportion of Variance 0.0070
+## Cumulative Proportion  1.0000</code></pre>
+</div>
+<div id="linear-combination-for-the-first-principal-component-is" class="section level1">
+<h1>Linear combination for the first principal component is</h1>
+<pre class="r"><code>a1 &lt;- heptathlon_pca$rotation[, 1]
+a1</code></pre>
+<pre><code>##    hurdles   highjump       shot    run200m   longjump    javelin 
+## -0.4528710 -0.3771992 -0.3630725 -0.4078950 -0.4562318 -0.0754090 
+##    run800m 
+## -0.3749594</code></pre>
+<pre class="r"><code>center &lt;- heptathlon_pca$center
+center</code></pre>
+<pre><code>##  hurdles highjump     shot  run200m longjump  javelin  run800m 
+##   2.5800   1.7820  13.1176   1.9608   6.1524  41.4824  27.3760</code></pre>
+<pre class="r"><code>scale &lt;- heptathlon_pca$scale
+scale</code></pre>
+<pre><code>##    hurdles   highjump       shot    run200m   longjump    javelin 
+## 0.73664781 0.07794229 1.49188438 0.96955712 0.47421233 3.54565612 
+##    run800m 
+## 8.29108809</code></pre>
+</div>
+<div id="now-apply-scale-funciton-to-the-data-and-multiply-with-the-loading-matrix-in" class="section level1">
+<h1>Now apply scale funciton to the data and multiply with the loading matrix in</h1>
+</div>
+<div id="order-to-compute-the-first-principal-component-score-for-each-competitor" class="section level1">
+<h1>order to compute the first principal component score for each competitor:</h1>
+<pre class="r"><code>hm &lt;- as.matrix(subset(heptathlon, select = -c(score)))
+drop(scale(hm, center = center, scale = scale) %*% heptathlon_pca$rotation[,1])</code></pre>
+<pre><code>## Joyner-Kersee (USA)          John (GDR)        Behmer (GDR) 
+##        -4.121447626        -2.882185935        -2.649633766 
+##  Sablovskaite (URS)   Choubenkova (URS)        Schulz (GDR) 
+##        -1.343351210        -1.359025696        -1.043847471 
+##       Fleming (AUS)       Greiner (USA)    Lajbnerova (CZE) 
+##        -1.100385639        -0.923173639        -0.530250689 
+##       Bouraga (URS)       Wijnsma (HOL)     Dimitrova (BUL) 
+##        -0.759819024        -0.556268302        -1.186453832 
+##      Scheider (SWI)         Braun (FRG)  Ruotsalainen (FIN) 
+##         0.015461226         0.003774223         0.090747709 
+##        Yuping (CHN)         Hagger (GB)         Brown (USA) 
+##        -0.137225440         0.171128651         0.519252646 
+##       Mulliner (GB)    Hautenauve (BEL)        Kytola (FIN) 
+##         1.125481833         1.085697646         1.447055499 
+##      Geremias (BRA)       Hui-Ing (TAI)      Jeong-Mi (KOR) 
+##         2.014029620         2.880298635         2.970118607 
+##         Launa (PNG) 
+##         6.270021972</code></pre>
+</div>
+<div id="predict" class="section level1">
+<h1>Predict</h1>
+<pre class="r"><code>predict(heptathlon_pca)[,1]</code></pre>
+<pre><code>## Joyner-Kersee (USA)          John (GDR)        Behmer (GDR) 
+##        -4.121447626        -2.882185935        -2.649633766 
+##  Sablovskaite (URS)   Choubenkova (URS)        Schulz (GDR) 
+##        -1.343351210        -1.359025696        -1.043847471 
+##       Fleming (AUS)       Greiner (USA)    Lajbnerova (CZE) 
+##        -1.100385639        -0.923173639        -0.530250689 
+##       Bouraga (URS)       Wijnsma (HOL)     Dimitrova (BUL) 
+##        -0.759819024        -0.556268302        -1.186453832 
+##      Scheider (SWI)         Braun (FRG)  Ruotsalainen (FIN) 
+##         0.015461226         0.003774223         0.090747709 
+##        Yuping (CHN)         Hagger (GB)         Brown (USA) 
+##        -0.137225440         0.171128651         0.519252646 
+##       Mulliner (GB)    Hautenauve (BEL)        Kytola (FIN) 
+##         1.125481833         1.085697646         1.447055499 
+##      Geremias (BRA)       Hui-Ing (TAI)      Jeong-Mi (KOR) 
+##         2.014029620         2.880298635         2.970118607 
+##         Launa (PNG) 
+##         6.270021972</code></pre>
+</div>
+<div id="plot-the-graph" class="section level1">
+<h1>Plot the graph</h1>
+<pre class="r"><code>plot(heptathlon_pca)</code></pre>
+<p><img src="figures/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="look-at-correlation-between-score-and-x1" class="section level1">
+<h1>Look at correlation between score and x[,1]</h1>
+<pre class="r"><code>cor(heptathlon$score, heptathlon_pca$x[,1])</code></pre>
+<pre><code>## [1] -0.9910978</code></pre>
+</div>
+<div id="biplot" class="section level1">
+<h1>Biplot</h1>
+<pre class="r"><code>biplot(heptathlon_pca, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
+<p><img src="figures/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="scatterplot-of-the-score-assigned-to-each-athlete-in-1988-and-the-first" class="section level1">
+<h1>scatterplot of the score assigned to each athlete in 1988 and the first</h1>
+</div>
+<div id="principal-component" class="section level1">
+<h1>principal component</h1>
+<pre class="r"><code>plot(heptathlon$score, heptathlon_pca$x[,1])</code></pre>
+<p><img src="figures/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+
+
+
+    </div>
+  </article>
+
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/r.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/yaml.min.js"></script>
+    
+    <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+  </body>
+</html>
+

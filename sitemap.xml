@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2017/01/19/principal-component-analysis/</loc>
+    <lastmod>2017-01-19T11:08:14-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2017/01/19/analyzing-fantasy-premier-league/</loc>
     <lastmod>2017-01-19T10:13:31-08:00</lastmod>
   </url>
@@ -33,7 +38,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-01-19T10:13:31-08:00</lastmod>
+    <lastmod>2017-01-19T11:08:14-08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -45,13 +50,19 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-01-19T10:13:31-08:00</lastmod>
+    <lastmod>2017-01-19T11:08:14-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/premierleague/</loc>
     <lastmod>2017-01-19T10:13:31-08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/principal-component/</loc>
+    <lastmod>2017-01-19T11:08:14-08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,6 +86,12 @@
   
   <url>
     <loc>/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/test/</loc>
+    <lastmod>2017-01-19T10:13:31-08:00</lastmod>
     <priority>0</priority>
   </url>
   
