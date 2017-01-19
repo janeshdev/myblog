@@ -20,8 +20,7 @@
 /BLOGDOWN-BODY-BEFORE --&gt;
 
 &lt;p&gt;A very nice tutorial on principal component analysis can be found on &lt;a href=&#34;https://www.youtube.com/watch?v=_UVHneBUBW0&amp;amp;t=1s&amp;amp;ab_channel=JoshuaStarmer&#34;&gt;youtube.&lt;/a&gt;&lt;/p&gt;
-&lt;div id=&#34;the-following-code-is-based-on-the-book-a-handbook-of-statistical-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;The following code is based on the book &lt;a href=&#34;ftp://cran.r-project.org/pub/R/web/packages/HSAUR/vignettes/Ch_principal_components_analysis.pdf&#34;&gt;A Handbook of Statistical Analysis&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The following code is based on the book &lt;a href=&#34;ftp://cran.r-project.org/pub/R/web/packages/HSAUR/vignettes/Ch_principal_components_analysis.pdf&#34;&gt;A Handbook of Statistical Analysis&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;quot;HSAUR&amp;quot;)
 library(HSAUR)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: tools&lt;/code&gt;&lt;/pre&gt;
@@ -47,7 +46,6 @@ heptathlon$run800m &amp;lt;- max(heptathlon$run800m) - heptathlon$run800m
 
 plot(heptathlon)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/2017/01/19/principal-component-analysis/figures/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;now-look-at-correlations&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Now look at correlations&lt;/h1&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;round(cor(heptathlon), 2)&lt;/code&gt;&lt;/pre&gt;
